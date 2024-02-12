@@ -1,0 +1,17 @@
+Duo website
+gsap scrolltrigger locomotive
+---------------------------------
+never give h & w to main/wrapper div
+---------------------------------
+scrolltrigger 
+---------------------------------
+our cursor does not hijacked by loco that why 
+we make it out of main div
+---------------------------------------
+custom attributes -> data-image in box
+using javascript showing image
+on hover (mouseenter/ mouseleave) dynamically
+with css prop bgimg in cursor
+applied transition when bgimg appear only then works 
+
+---------------------------------------

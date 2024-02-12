@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .marquee {
+      width: 100%;
+      border: 1px solid red;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .marquee span {
+      display: inline-block;
+      animation: marquee 10s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(100vw);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="marquee">
+    <span>This is a marquee text.______________________________________________________________________________</span>
+  </div>
+</body>
+</html>
