@@ -22,6 +22,7 @@ body {
     height: 100%;
     width: 100%;
     cursor: none;
+    /* overflow: hidden; */
 }
 
 #cursor{
@@ -484,7 +485,7 @@ nav .logo {
 }
 
 footer{
-    height: 90vh;
+    height: 125vh;
     width: 100%;
     background-color: #edbefd;
     padding: 0 5vw;
