@@ -109,7 +109,7 @@ an = () => {
             // trigger: '.page1 h1',
             trigger: '.page1 h1',
             scroller: '#main',
-            markers: true,
+            // markers: true,
             scrub: 3,
             start: 'top 10%',
             end: 'top 0',
