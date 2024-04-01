@@ -1,4 +1,4 @@
-# PROJECT-4: Duo Studio
+# PROJECT-3: Duo Studio
 
 ## Overview
 
