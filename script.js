@@ -35,7 +35,7 @@ locoScroll();
 
 dot = () => {
     var main = document.querySelector('#main');
-    var vid = document.querySelector('.page1 video')
+    // var vid = document.querySelector('.page1 video')
     var dot = document.querySelector('#cursor');
     
     document.addEventListener('mousemove', function (dets) {
@@ -47,7 +47,7 @@ dot = () => {
         })
     })
     
-    main.addEventListener('mouseleave', function (dets) {
+    main.addEventListener('mouseleave', function () {
         gsap.to(dot, {
             scale: 1,
             opacity: 0,
@@ -55,6 +55,40 @@ dot = () => {
     })
 }
 dot();
+
+// ---------------------------------------------------------
+
+cursor = () => {
+
+    const button = document.querySelector('button');
+    let boundingRect = button.getBoundingClientRect();
+
+    window.addEventListener('resize', () => {
+        boundingRect = button.getBoundingClientRect();
+    });
+
+    button.addEventListener('mousemove', (e) => {
+        const mousePosX = e.pageX - boundingRect.left;
+        const mousePosY = e.pageY - boundingRect.top;
+        gsap.to(button, {
+            x: (mousePosX - boundingRect.width / 2) * 0.4,
+            y: (mousePosY - boundingRect.height / 2) * 0.4,
+            duration: 0.8,
+            });
+            console.log("a")
+        });
+
+    button.addEventListener('mouseleave', () => {
+    gsap.to(button, {
+            x: 0,
+            y: 0,
+            duration: 0.8,
+            ease: 'elastic.out(1,0.3)'
+        });
+    });
+
+}
+cursor();
 
 // ----------------------------------------------------------
 
@@ -67,30 +101,50 @@ gsap.from(".page1 h1,.page1 h2", {
 })
 
 an = () => {
+
+    var isMobile = window.innerWidth <= 768; // Change this value based on your mobile breakpoint
+
     var tl = gsap.timeline({
         scrollTrigger: {
             // trigger: '.page1 h1',
             trigger: '.page1 h1',
             scroller: '#main',
-            // markers: true,
+            markers: true,
             scrub: 3,
-            start: 'top 30%',
+            start: 'top 10%',
             end: 'top 0',
         }
     })
     
-    tl.to('.page1 h1', {
-        x: -100,
-        duration: 1,
-    }, 'anim') // add extra var = anim for execute both at same time
-    tl.to('.page1 h2', {
-        x: 100,
-        duration: 1,
-    }, 'anim')
-    tl.to('.page1 video', {
-        width: '90%',
-        delay: .1,
-    },)
+    if (isMobile) {
+        // Mobile animations
+        tl.to('.page1 h1', {
+            x: 0, // Change these values as needed
+            duration: 1,
+        }, 'anim')
+        tl.to('.page1 h2', {
+            x: 0, // Change these values as needed
+            duration: 1,
+        }, 'anim')
+        tl.to('.page1 video', {
+            height: '100vh',
+            delay: .1,
+        },)
+    } else {
+        // Desktop animations
+        tl.to('.page1 h1', {
+            x: -100,
+            duration: 1,
+        }, 'anim')
+        tl.to('.page1 h2', {
+            x: 100,
+            duration: 1,
+        }, 'anim')
+        tl.to('.page1 video', {
+            width: '90%',
+            delay: .1,
+        },)
+    }
     
     var tl2 = gsap.timeline({
         scrollTrigger: {
@@ -98,8 +152,8 @@ an = () => {
             scroller: '#main',
             // markers: true,
             scrub: 3,
-            start: 'top -120%',
-            end: 'top -130%',
+            start: isMobile ? 'top -50%' : 'top -120%', // Adjust these values as needed
+            end: isMobile ? 'top -60%' : 'top -130%', // Adjust these values as needed
         }
     })
     tl2.to('#main', {
@@ -112,8 +166,8 @@ an = () => {
             scroller: '#main',
             // markers: true,
             scrub: 3,
-            start: 'top -280%',
-            end: 'top -300%',
+            start: isMobile ? 'top -140%' : 'top -280%', // Adjust these values as needed
+            end: isMobile ? 'top -150%' : 'top -300%', // Adjust these values as needed
         }
     })
     tl3.to('#main', {
@@ -127,14 +181,14 @@ an();
 // -------------------------------------------------------
 
 vid = () => {
-    var p1 = document.querySelector('page1')
+    // var p1 = document.querySelector('page1')
     var vid = document.querySelector('.page1 video')
     var dot = document.querySelector('#cursor');
     
     // const transVal = dot.style.transition;
     
     
-    vid.addEventListener('mouseenter', function (dets) {
+    vid.addEventListener('mouseenter', function () {
         dot.innerHTML = "sound on";
         dot.style.width = '7%';
         dot.style.display = 'flex';
@@ -147,7 +201,7 @@ vid = () => {
         // dot.style.transition = '0.3s ease-in'
     });
     
-    vid.addEventListener('click', function (dets) {
+    vid.addEventListener('click', function () {
         if (vid.muted) {
             vid.muted = false;
             dot.innerHTML = "sound off";
@@ -157,7 +211,7 @@ vid = () => {
         }
     });
     
-    vid.addEventListener('mouseleave', function (dets) {
+    vid.addEventListener('mouseleave', function () {
         dot.innerHTML = ""; // Clear the content of the dot element
         dot.style.width = '0'; // Reset the width of the dot element
         dot.style.width = '30px';
@@ -208,11 +262,11 @@ var nav = document.querySelector('#nav')
 var navi = document.querySelector('nav')
 var h4 = document.querySelectorAll('nav h4')
 h4.forEach(function (elem) {
-    elem.addEventListener('mousemove', function (dets) {
+    elem.addEventListener('mousemove', function () {
         nav.style.display = 'flex';
         nav.style.opacity = '1';
     })
-    navi.addEventListener('mouseleave', function (dets) {
+    navi.addEventListener('mouseleave', function () {
         nav.style.display = 'none';
         nav.style.opacity = '0';
     })
@@ -240,7 +294,7 @@ box = ()=>{
             });
         });
 
-        elem.addEventListener("mouseleave", function(dets) {
+        elem.addEventListener("mouseleave", function() {
             gsap.to(elem.querySelector("img"), {
                 opacity: 0,
                 ease: Power3,
@@ -252,6 +306,11 @@ box = ()=>{
     });
 }
 box();
+
+// ---------------------
+
+
+
 
 // ------------------------------------
 // var dot = document.querySelector('#cursor')
