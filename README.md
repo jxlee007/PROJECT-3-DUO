@@ -37,4 +37,4 @@ This is the code for a personal portfolio website for JSM Studio, showcasing the
 
 ## Author
 
-- Jagmohan Singh Malhi
+- [Jagmohan Singh Malhi](https://www.linkedin.com/in/jagmohan-singh-malhi-a67805243/)
